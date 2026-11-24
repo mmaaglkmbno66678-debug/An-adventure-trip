@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#082B45">
+  <meta name="description" content="رحلة البحث عن الكنز – لعبة تعليمية تفاعلية بأسلوب مغامرة القراصنة">
+  <title>رحلة البحث عن الكنز | Treasure Hunt</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- مكتبة رسوم SVG -->
+  <svg class="svg-defs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="sailGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#F5F3E9"/><stop offset="1" stop-color="#E8C995"/>
+      </linearGradient>
+      <linearGradient id="hullGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#8B5A35"/><stop offset="1" stop-color="#4A2A17"/>
+      </linearGradient>
+      <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#FFE08A"/><stop offset="0.5" stop-color="#F4B942"/><stop offset="1" stop-color="#B8791B"/>
+      </linearGradient>
+      <linearGradient id="sandGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#F1D69E"/><stop offset="1" stop-color="#C99A5B"/>
+      </linearGradient>
+      <radialGradient id="glassGrad" cx="0.35" cy="0.25" r="0.9">
+        <stop offset="0" stop-color="rgba(255,255,255,.35)"/><stop offset="0.45" stop-color="rgba(53,198,200,.16)"/><stop offset="1" stop-color="rgba(8,43,69,.55)"/>
+      </radialGradient>
+
+      <symbol id="shipArt" viewBox="0 0 260 180">
+        <ellipse cx="130" cy="163" rx="106" ry="10" fill="rgba(2,22,38,.35)"/>
+        <path d="M22 118 Q130 152 238 118 L216 152 Q130 182 44 152 Z" fill="url(#hullGrad)" stroke="#3A2112" stroke-width="3"/>
+        <path d="M30 124 Q130 152 230 124" fill="none" stroke="#F4B942" stroke-width="4" opacity=".85"/>
+        <g fill="#C98A3C" opacity=".9"><circle cx="70" cy="141" r="3"/><circle cx="100" cy="148" r="3"/><circle cx="130" cy="151" r="3"/><circle cx="160" cy="148" r="3"/><circle cx="190" cy="141" r="3"/></g>
+        <rect x="124" y="26" width="6" height="106" rx="3" fill="#5C361E"/>
+        <rect x="60" y="48" width="4" height="80" rx="2" fill="#70452B"/>
+        <path d="M126 32 Q78 58 64 116 L126 116 Z" fill="url(#sailGrad)" stroke="#D6B47A" stroke-width="2"/>
+        <path d="M132 40 Q182 64 196 114 L132 114 Z" fill="url(#sailGrad)" stroke="#D6B47A" stroke-width="2" opacity=".95"/>
+        <path d="M126 56 Q92 78 78 110 M132 62 Q166 82 182 110" fill="none" stroke="#CFA972" stroke-width="1.5" opacity=".7"/>
+        <path d="M127 26 L127 10" stroke="#3A2112" stroke-width="2"/>
+        <path d="M127 10 Q152 14 168 10 L168 30 Q148 35 127 30 Z" fill="#14202B"/>
+        <g transform="translate(147 19)" fill="#F5F3E9"><circle cx="0" cy="0" r="5"/><path d="M-4 4 L4 -4 M-4 -4 L4 4" stroke="#F5F3E9" stroke-width="1.6"/></g>
+        <path d="M204 112 L236 84 L234 118 Z" fill="#E8C995" opacity=".9"/>
+        <circle cx="48" cy="128" r="9" fill="#F4B942" opacity=".9"/>
+      </symbol>
+
+      <symbol id="islandArt" viewBox="0 0 200 130">
+        <ellipse cx="100" cy="115" rx="88" ry="13" fill="rgba(255,255,255,.35)"/>
+        <path d="M18 106 Q100 78 182 106 Q150 126 100 126 Q50 126 18 106 Z" fill="url(#sandGrad)" stroke="#A87840" stroke-width="2"/>
+        <path d="M45 104 Q92 68 145 103" fill="#3E8E6B" opacity=".85"/>
+        <path d="M100 94 L100 44" stroke="#70452B" stroke-width="7" stroke-linecap="round"/>
+        <path d="M100 46 Q72 32 54 48 Q78 42 100 56 M100 46 Q128 30 148 48 Q124 42 100 56 M100 48 Q84 24 66 22 Q86 34 100 58 M100 48 Q118 24 136 22 Q114 34 100 58" fill="#2D7A58" stroke="#216047" stroke-width="1.5"/>
+        <circle cx="100" cy="40" r="4" fill="#70452B"/>
+        <circle cx="166" cy="104" r="3" fill="#8B5A35"/><circle cx="34" cy="106" r="3" fill="#8B5A35"/>
+      </symbol>
+
+      <symbol id="birdArt" viewBox="0 0 60 30">
+        <path d="M4 18 Q15 3 30 17 Q45 3 56 18" fill="none" stroke="#F5F3E9" stroke-width="3" stroke-linecap="round"/>
+      </symbol>
+
+      <symbol id="compassArt" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="url(#goldGrad)" stroke="#70452B" stroke-width="4"/>
+        <circle cx="50" cy="50" r="35" fill="#082B45" stroke="#E8C995" stroke-width="2"/>
+        <path d="M50 15 L58 44 L50 50 L42 44 Z" fill="#35C6C8"/>
+        <path d="M50 85 L42 56 L50 50 L58 56 Z" fill="#E8C995" opacity=".7"/>
+        <path d="M50 50 L85 50 L76 57 Z" fill="#F4B942"/><path d="M50 50 L15 50 L24 43 Z" fill="#F4B942" opacity=".6"/>
+        <circle cx="50" cy="50" r="5" fill="#F4B942"/>
+      </symbol>
+
+      <symbol id="coinArt" viewBox="0 0 40 40">
+        <circle cx="20" cy="20" r="17" fill="url(#goldGrad)" stroke="#A96F18" stroke-width="2"/>
+        <circle cx="20" cy="20" r="12" fill="none" stroke="#FFF0B8" stroke-width="2" opacity=".7"/>
+        <path d="M20 11 L23 18 L31 18 L25 23 L27 31 L20 26 L13 31 L15 23 L9 18 L17 18 Z" fill="#FFF3C4" opacity=".85"/>
+      </symbol>
+
+      <symbol id="keyArt" viewBox="0 0 80 40">
+        <circle cx="18" cy="20" r="13" fill="none" stroke="url(#goldGrad)" stroke-width="7"/>
+        <path d="M31 20 H72 M62 20 V31 M70 20 V28" stroke="url(#goldGrad)" stroke-width="7" stroke-linecap="round"/>
+      </symbol>
+
+      <symbol id="mapPieceArt" viewBox="0 0 100 100">
+        <path d="M8 10 L48 5 L52 48 L12 54 Z" fill="#E8C995" stroke="#A87840" stroke-width="2"/>
+        <path d="M16 24 Q30 14 42 26 M18 40 Q30 30 44 40" fill="none" stroke="#A87840" stroke-width="1.5" opacity=".6"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- الخلفية البحرية المتحركة -->
+  <div class="world" id="world" aria-hidden="true">
+    <div class="sky"></div>
+    <div class="sun-glow"></div>
+    <div class="sun-rays"></div>
+    <div class="cloud cloud-1"></div><div class="cloud cloud-2"></div><div class="cloud cloud-3"></div>
+    <div class="bird bird-1"><svg><use href="#birdArt"/></svg></div>
+    <div class="bird bird-2"><svg><use href="#birdArt"/></svg></div>
+    <div class="bird bird-3"><svg><use href="#birdArt"/></svg></div>
+    <div class="far-island"><svg viewBox="0 0 200 130"><use href="#islandArt"/></svg></div>
+    <div class="sea">
+      <div class="wave wave-a"></div><div class="wave wave-b"></div><div class="wave wave-c"></div>
+      <div class="foam"></div><div class="shimmer"></div>
+    </div>
+    <div class="ambient-bubbles" id="ambientBubbles"></div>
+  </div>
+
+  <!-- شريط المعلومات -->
+  <header class="hud hidden" id="hud">
+    <button class="hud-brand" id="btnHome" type="button" aria-label="العودة إلى خريطة الرحلة">
+      <svg class="compass-mini"><use href="#compassArt"/></svg>
+      <span>رحلة الكنز</span>
+    </button>
+    <div class="hud-progress">
+      <div class="hud-progress-label"><span>تقدّم الرحلة</span><strong id="progressText">0%</strong></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <div class="hud-stats">
+      <span class="score-pill" aria-label="النقاط"><svg><use href="#coinArt"/></svg><strong id="scoreText">0</strong></span>
+      <span class="correct-pill" title="الإجابات الصحيحة">✓ <strong id="correctText">0</strong>/15</span>
+    </div>
+    <button class="sound-toggle" id="btnSound" type="button" aria-label="تشغيل أو كتم الصوت" aria-pressed="true">
+      <span class="sound-icon" id="soundIcon">🔊</span><span class="sound-label" id="soundLabel">الصوت مفعّل</span>
+    </button>
+  </header>
+
+  <main id="main">
+    <!-- شاشة البداية -->
+    <section class="screen start-screen active" id="screen-start" aria-label="شاشة البداية">
+      <div class="start-ship sailing" id="startShip"><svg viewBox="0 0 260 180"><use href="#shipArt"/></svg></div>
+      <div class="start-content">
+        <div class="eyebrow">🏴‍☠️ مغامرة بحرية تعليمية 🏴‍☠️</div>
+        <h1 class="game-title"><span>رحلة البحث</span><span>عن الكنز</span></h1>
+        <p class="game-subtitle">Treasure Hunt – Pirate Adventure</p>
+        <p class="start-desc">أبحر مع طاقمك بين الجزر الست، وأجب عن الأسئلة لتجمع قطع الخريطة وتفتح الصندوق الذهبي.</p>
+        <div class="start-actions">
+          <button class="btn btn-gold btn-xl" id="btnStart" type="button"><span>ابدأ المغامرة</span><span class="btn-arrow">←</span></button>
+          <button class="btn btn-ghost" id="btnStartSound" type="button" aria-label="تشغيل أو كتم الصوت">🔊 <span id="startSoundLabel">الصوت مفعّل</span></button>
+        </div>
+        <div class="start-hints"><span>⚓ ٦ جزر</span><span>💎 ١٥ سؤالًا</span><span>🗝️ كنز واحد</span></div>
+      </div>
+      <div class="scroll-hint">حرك المؤشر فوق الماء لتصنيع الفقاعات ✨</div>
+    </section>
+
+    <!-- خريطة الرحلة -->
+    <section class="screen map-screen" id="screen-map" aria-label="خريطة الرحلة">
+      <div class="map-wrap">
+        <div class="map-heading">
+          <div><span class="kicker">الخرطة القديمة</span><h2>خريطة الرحلة</h2></div>
+          <p id="mapStatus">الجزيرة الأولى تنتظر قدومك، يا قبطان!</p>
+        </div>
+        <div class="parchment" id="parchment">
+          <div class="parchment-grain"></div>
+          <svg class="map-route" id="mapRoute" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <div class="map-islands" id="mapIslands"></div>
+          <div class="map-legend">
+            <span><i class="dot dot-done"></i> مكتملة</span>
+            <span><i class="dot dot-current"></i> متاحة الآن</span>
+            <span><i class="dot dot-locked"></i> مقفلة</span>
+          </div>
+          <div class="x-marks" aria-hidden="true">☠</div>
+        </div>
+        <div class="map-footer">
+          <div class="pieces-tracker" id="piecesTracker" aria-label="قطع الخريطة المجمعة"></div>
+          <button class="btn btn-outline" id="btnMapHelp" type="button">❓ كيف ألعب؟</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- مراحل الأسئلة -->
+    <section class="screen stage-screen" id="screen-stage" aria-label="مرحلة اللعبة">
+      <div class="stage-shell" id="stageShell"><div id="stageCard"></div></div>
+    </section>
+
+    <!-- شاشة النهاية -->
+    <section class="screen end-screen" id="screen-end" aria-label="شاشة النهاية">
+      <div class="end-scene">
+        <div class="end-ship"><svg viewBox="0 0 260 180"><use href="#shipArt"/></svg></div>
+        <div class="end-island"><svg viewBox="0 0 200 130"><use href="#islandArt"/></svg></div>
+        <div class="treasure-glow"></div>
+        <svg class="chest" viewBox="0 0 240 180" aria-hidden="true">
+          <ellipse cx="120" cy="162" rx="92" ry="10" fill="rgba(2,22,38,.4)"/>
+          <g class="chest-lid">
+            <path d="M32 86 Q32 26 120 26 Q208 26 208 86 Z" fill="#7A4A28" stroke="#402312" stroke-width="4"/>
+            <path d="M36 82 Q38 32 120 32 Q202 32 204 82 Z" fill="#8C5A32"/>
+            <rect x="108" y="34" width="24" height="52" rx="4" fill="url(#goldGrad)" stroke="#8B5A16" stroke-width="2"/>
+            <path d="M50 72 Q120 46 190 72" fill="none" stroke="#F4B942" stroke-width="4" opacity=".8"/>
+          </g>
+          <g class="chest-body">
+            <path d="M28 84 H212 L198 150 Q120 166 42 150 Z" fill="url(#hullGrad)" stroke="#402312" stroke-width="4"/>
+            <rect x="108" y="84" width="24" height="62" rx="4" fill="url(#goldGrad)" stroke="#8B5A16" stroke-width="2"/>
+            <path d="M44 108 Q120 124 196 108" fill="none" stroke="#F4B942" stroke-width="3" opacity=".75"/>
+            <rect x="106" y="106" width="28" height="30" rx="5" fill="url(#goldGrad)" stroke="#7A4D12" stroke-width="3"/>
+            <circle cx="120" cy="119" r="4" fill="#5A3617"/>
+          </g>
+          <g class="chest-treasure">
+            <circle cx="80" cy="80" r="9" fill="url(#goldGrad)"/><circle cx="120" cy="74" r="11" fill="url(#goldGrad)"/><circle cx="158" cy="80" r="9" fill="url(#goldGrad)"/>
+            <path d="M96 70 L112 48 L128 70 Z" fill="#35C6C8" opacity=".9"/>
+          </g>
+        </svg>
+        <div class="coin-burst" id="coinBurst" aria-hidden="true"></div>
+      </div>
+      <div class="end-content">
+        <div class="eyebrow">🏆 النهاية السعيدة 🏆</div>
+        <h2 class="end-title">مبروك! لقد أصبحت <span>أسطورة البحار</span></h2>
+        <p class="end-flavor">فتح الصندوق الذهبي... الكنز لك يا قبطان!</p>
+        <div class="end-stats">
+          <div class="stat-card"><span>النقاط النهائية</span><strong id="endScore">0</strong></div>
+          <div class="stat-card"><span>الإجابات الصحيحة</span><strong id="endCorrect">0 / 15</strong></div>
+          <div class="stat-card"><span>نسبة النجاح</span><strong id="endPercent">0%</strong></div>
+        </div>
+        <div class="end-actions">
+          <button class="btn btn-gold btn-xl" id="btnReplay" type="button">إعادة المغامرة</button>
+          <button class="btn btn-outline" id="btnShowResults" type="button">📜 عرض النتيجة</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- المؤثرات العامة -->
+  <div class="fx-layer" id="fxLayer" aria-hidden="true"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- مكافأة إكمال القسم -->
+  <div class="celebration hidden" id="celebration" role="status" aria-live="polite">
+    <div class="celebration-card">
+      <div class="celebration-icon">🏴‍☠️</div>
+      <h3 id="celebrationTitle">أحسنت يا قرصان!</h3>
+      <p id="celebrationText">حصلت على نقاط وقطعة من خريطة الكنز</p>
+      <div class="celebration-reward" id="celebrationReward"></div>
+      <button class="btn btn-gold" id="btnCelebrationNext" type="button">أكمل الإبحار</button>
+    </div>
+  </div>
+
+  <!-- نافذة النتيجة التفصيلية -->
+  <div class="modal hidden" id="resultsModal" role="dialog" aria-modal="true" aria-label="النتيجة التفصيلية">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div><span class="kicker">سجل القبطان</span><h3>النتيجة التفصيلية</h3></div>
+        <button class="icon-btn" id="btnCloseResults" type="button" aria-label="إغلاق">✕</button>
+      </div>
+      <div class="modal-summary" id="modalSummary"></div>
+      <div class="results-list" id="resultsList"></div>
+      <div class="modal-foot"><button class="btn btn-gold" id="btnModalReplay" type="button">إعادة المغامرة</button></div>
+    </div>
+  </div>
+
+  <!-- نافذة مساعدة -->
+  <div class="modal hidden" id="helpModal" role="dialog" aria-modal="true" aria-label="طريقة اللعب">
+    <div class="modal-panel help-panel">
+      <div class="modal-head"><div><span class="kicker">دليل الملاح</span><h3>كيف ألعب؟</h3></div><button class="icon-btn" id="btnCloseHelp" type="button" aria-label="إغلاق">✕</button></div>
+      <ul class="help-list">
+        <li>⚓ ابدأ من ميناء المعرفة، ثم أبحر بين الجزر بالترتيب.</li>
+        <li>💰 كل إجابة صحيحة تمنحك ١٠٠ نقطة وقطعة من الخريطة.</li>
+        <li>🧭 في تحدي القبطان، اسحب العناصر أو اضغط عليها ثم اضغط على مكانها.</li>
+        <li>💎 في الكنز الأخير، أجب قبل انتهاء المؤقت لتحصل على مفتاح الصندوق.</li>
+        <li>💾 تُحفظ نقاطك وتقدّمك تلقائيًا في هذا المتصفح.</li>
+      </ul>
+      <div class="modal-foot"><button class="btn btn-gold" id="btnCloseHelp2" type="button">فهمت، لنبحر!</button></div>
+    </div>
+  </div>
+
+  <script src="js/questions.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
